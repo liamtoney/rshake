@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 from obspy import UTCDateTime, read
 from obspy.clients.fdsn import Client
 
-# Station and channel info
+# Station and channel info (edit me!)
 STATION = 'RAF63'
 CHANNEL = 'EHZ'
 
-# For converting to local time
+# For converting to local time (edit me!)
 UTC_OFFSET = -9
 
 # Create URL for downloading via FTP
@@ -40,6 +40,7 @@ st.plot(method='full', fig=fig)
 ax = fig.axes[0]
 sign = '+' if UTC_OFFSET >= 0 else '-'
 ax.set_xlabel(f'UTC {sign} {abs(UTC_OFFSET)} hrs')
-ax.set_ylabel('Velocity (m/s)')
+ylabel = 'Acceleration (m/s$^2$)' if CHANNEL[1] == 'N' else 'Velocity (m/s)'
+ax.set_ylabel(ylabel)
 fig.tight_layout()
 plt.show()

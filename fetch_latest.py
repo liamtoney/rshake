@@ -35,7 +35,7 @@ for tr in st:
     tr.stats.starttime += UTC_OFFSET * 60 * 60
 
 # Make interactive plot
-fig = plt.figure()
+fig = plt.figure(figsize=(10, 4))
 st.plot(method='full', fig=fig)
 ax = fig.axes[0]
 sign = '$+$' if UTC_OFFSET >= 0 else '$-$'

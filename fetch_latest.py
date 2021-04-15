@@ -9,12 +9,12 @@ STATION = 'RAF63'
 CHANNEL = 'EHZ'
 
 # For converting to local time (edit me!)
-UTC_OFFSET = -9
+UTC_OFFSET = -8
 
 # Create URL for downloading via FTP
 now = UTCDateTime()
 base_url = f'ftp://rs.local/{now.year}/AM/{STATION}/{CHANNEL}.D/'
-filename = f'AM.{STATION}.00.{CHANNEL}.D.{now.year}.{now.julday}'
+filename = f'AM.{STATION}.00.{CHANNEL}.D.{now.year}.{now.julday:03}'
 
 # Download most recent miniSEED file (Python's requests library can't do FTP)
 print(f'Downloading {filename}')
@@ -38,7 +38,7 @@ for tr in st:
 fig = plt.figure()
 st.plot(method='full', fig=fig)
 ax = fig.axes[0]
-sign = '+' if UTC_OFFSET >= 0 else '-'
+sign = '$+$' if UTC_OFFSET >= 0 else '$-$'
 ax.set_xlabel(f'UTC {sign} {abs(UTC_OFFSET)} hrs')
 ylabel = 'Acceleration (m/s$^2$)' if CHANNEL[1] == 'N' else 'Velocity (m/s)'
 ax.set_ylabel(ylabel)
